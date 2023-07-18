@@ -4,7 +4,7 @@ import { HfInference } from "@huggingface/inference";
 import fs from "fs";
 import { File } from "@web-std/file";
 
-const hf = new HfInference("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");
+const hf = new HfInference(process.env.HF_API_KEY);
 
 // auto delete old files
 function deleteOldFiles() {
@@ -29,7 +29,6 @@ async function generateImage(prompt: string) {
     model: "runwayml/stable-diffusion-v1-5",
     inputs: prompt + " realistic 3d image",
     parameters: {
-      guidance_scale: 4,
       negative_prompt:
         "blurry, low quality, low resolution, pixelated, unclear",
       num_inference_steps: 100,
